@@ -1,0 +1,74 @@
+button {
+    background-color: transparent;
+    border: 0px;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.challengesButton, .usersButton {
+    display: block;
+    width: 150px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.newUser {
+    background-color: #E15C4A;
+    color: #fff;
+    width: 250px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.sort {
+    float: right;
+    margin-top: 7px;
+    margin-right: 10px;
+}
+
+.popUpForm {
+    display: none;
+    position: fixed;
+    left:0; right: 0; top: 0; bottom: 0;
+    background: #fff;
+    margin:160px auto;
+    width: 450px;
+    border-radius: 20px;
+    height: 520px;
+}
+
+.insidePopUp {
+    margin: 20px;
+}
+
+
+.submitButton {
+    background-color: #E15C4A;
+    color: #fff;
+    width: 100px;
+    height: 35px;
+}
+
+#overlay {
+    background-color: rgba(1,1,1,0.75);
+    position: fixed;
+    left:0; right: 0; top: 0; bottom: 0;
+    display: none;
+}
+
+.form-label {
+    font-family: 'PT Sans', sans-serif;
+}
+
+.optional {
+    font-size: 13px;
+    color: gray;
+}
+

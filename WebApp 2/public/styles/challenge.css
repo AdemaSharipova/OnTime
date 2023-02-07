@@ -1,0 +1,136 @@
+html, body {
+    height: 100%;
+}
+
+header {
+    margin-bottom: 10px;
+}
+
+.categoryTitle {
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 65px;
+    line-height: 112%;
+    margin-top: 2.5rem;
+    margin-bottom: 2.625rem;
+}
+
+.navbar {
+    background-color: transparent;
+    box-shadow: 0 0 0 0;
+}
+
+header .navbar-brand{
+    margin-left: 51px;
+    margin-top: 5px;
+
+}
+
+.navbar-collapse {
+    background-color: #FBFBFB;
+    border-radius: 20px;
+}
+
+.logoutbtn {
+    background-color: transparent;
+    border: none;
+}
+
+header .nav-item {
+    margin-left: 67px;
+    margin-top: 10px;
+}
+
+.navbar-nav .nav-link {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.5vw;
+
+}
+
+.nav-link {
+    text-transform: none;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #2C2C2C;
+}
+
+.navbar .navbar-nav .nav-link:hover::after{
+    width: 100%;
+}
+
+.navbar .navbar-expand-lg .navbar-light {
+    background-color: transparent;
+}
+
+.categoryButton {
+    width: 378px;
+    height: 109px;
+    border-radius: 20px;
+    font-family: 'Amethysta';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 28px;
+    color: white;
+}
+
+.main {
+    height: 100%;
+}
+
+.section2 {
+    background-color: #4CB9D3;
+}
+
+.categoryButtonsSection {
+    height: 600px;
+    overflow: scroll;
+}
+
+.categoryButtonsSection::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.categoryButtonsSection {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.card {
+    margin-left: auto;
+    margin-right: auto;
+    width: 34rem;
+    height: 44rem;
+    margin-top: 4rem;
+}
+
+.deleteSection {
+    position: relative;
+}
+
+.deleteButton {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 2.5rem;
+    left: 1.563rem;
+    width: 3.125rem;
+    height: 3.125rem;
+}
+
+.fa-trash-can {
+    color: #ffffff;
+}
+
+.cardText {
+    margin-top: 1.25rem;
+    font-family: 'Amethysta';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    letter-spacing: -0.005em;
+}

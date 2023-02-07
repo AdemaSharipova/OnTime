@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Time management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amethysta&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/22cf143bf2.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/less@4" ></script>
+    <link rel="stylesheet" href="/styles/time_style.css">
+    <style>
+        .fa-clipboard-list {
+            color: #AEAEB1;
+            margin-top: 17px;
+        }
+
+        .fa-check-double {
+            color: #fff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="row">
+    <div class="col-lg-1 leftNavBar">
+        <nav class="nav flex-column text-center">
+            <a href="/todo" class="navbar-brand">On Time</a>
+            <p class="nav-link">Menu</p>
+
+                <a class="nav-link" href="/todo"><i class="fa-solid fa-clipboard-list fa-lg "></i></a>
+
+            <div class = "activeLink1">
+            <a class="nav-link" href="#"><i class="fa-solid fa-check-double fa-lg"></i></a>
+            </div>
+            <a class="nav-link" href="/pomodoro"><i class="fa-solid fa-clock fa-lg"></i></a>
+            <hr class = "nav-link line">
+            <p class="nav-link">Account</p>
+            <a href="/profile" class="nav-link"><img class = "homeImage" src = "/images/Vector.png" srcset = "/images/Vector.svg"> </a>
+            <form method = "post" action = "/api/auth/logout"><button class="nav-link logoutbtn"><i class="fa-solid fa-arrow-right-from-bracket"></i></button></form>
+        </nav>
+    </div>
+    <div class="col nextPart">
+        <div class="row accountTitle">
+            <p class = "welcome">Welcome, <%= user.username%></p>
+            <img src = "" class = "userImage">
+        </div>
+        <div class="row">
+            <div class="col" style="padding-right: 0px !important; padding-left: 0px !important;">
+                <div class = "eis_matrix1">
+                    <h1>To-Do List</h1>
+                    <form method = "post" action = "/todo/addTask">
+                        <div class = " col inputTask">
+                            <input name = "todoTask" class = "todoTask">
+                            <hr class="inputLine">
+                            <button class = "buttonAdd">Add</button>
+                        </div>
+                        <div class="col todoTasksOutput">
+                            <div class="todo">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <script src = "/js/todo.js"></script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!--Fantacy Design-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #b8c6db;
+
+    background-image: linear-gradient(to right, #ff5758     , #ffc371);
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.quiz-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+  width: 600px;
+  overflow: hidden;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.quiz-header {
+  padding: 4rem;
+}
+
+h2 {
+  padding: 1rem;
+  text-align: center;
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+ul li label {
+  cursor: pointer;
+}
+
+button, a {
+      background-image: linear-gradient(to right, #ff5758     , #ff71ff);
+  color: #fff;
+  border: none;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-family: inherit;
+  padding: 1.3rem;
+  font-weight: bold;
+}
+
+button:hover, a:hover {
+  background-color: #ff5758;
+}
+
+button:focus, a:focus {
+  outline: none;
+  background-color: #ff5758;
+}
+
+.summary{
+    text-align: center;
+}
+    </style>
+    <title>Which hobby could you try?</title>
+  </head>
+  <body>
+    <div class="quiz-container" id="quiz">
+      <div class="quiz-header">
+        <h2 id="question" class="question"></h2>
+        <ul>
+          <li>
+            <label class="option">
+                <input type="radio" name="option" value="1" />
+                <span class="option1"></span>
+            </label>
+          </li>
+
+          <li>
+            <label class="option">
+                <input type="radio" name="option" value="2" />
+                <span class="option2"></span>
+            </label>
+          </li>
+
+          <li>
+            <label class="option">
+                <input type="radio" name="option" value="3" />
+                <span class="option3"></span>
+            </label>
+          </li>
+
+          <li>
+            <label class="option">
+                <input type="radio" name="option" value="4" />
+                <span class="option4"></span>
+            </label>
+          </li>
+        </ul>
+      </div>
+      <button class="next">Next</button>
+    </div>
+    <script>
+const questions = [
+  {
+    "question": "Which subjects do you like more at school?",
+    "answer1": "Art/Music",
+    "answer1Total": "1",
+    "answer2": "Math/Physics",
+    "answer2Total": "3",
+    "answer3": "Gym",
+    "answer3Total": "2",
+    "answer4": "Literature",
+    "answer4Total": "4"
+  },
+  {
+    "question": "How do you organize your thoughts",
+    "answer1": "Make a chart",
+    "answer1Total": "1",
+    "answer2": "Just keep in mind",
+    "answer2Total": "2",
+    "answer3": "Write in calendar",
+    "answer3Total": "3",
+    "answer4": "Use planner",
+    "answer4Total": "4"
+  },
+  {
+    "question": "How often do you go to the gym or do exercises?",
+    "answer1": "I don't like sport",
+    "answer1Total": "1",
+    "answer2": "1-2 times a month",
+    "answer2Total": "2",
+    "answer3": "Every week",
+    "answer3Total": "3",
+    "answer4": "Every 2-3 day",
+    "answer4Total": "4"
+  },
+  {
+    "question": "What do you like to do on Weekends?",
+    "answer1": "Relax and Sleep",
+    "answer1Total": "1",
+    "answer2": "Reading a book",
+    "answer2Total": "2",
+    "answer3": "Being physically active",
+    "answer3Total": "3",
+    "answer4": "Spend time with friends and family",
+    "answer4Total": "4"
+  },
+  {
+    "question": "How do you feel about spending money on your hobby?",
+    "answer1": "I don't want to spend money",
+    "answer1Total": "1",
+    "answer2": "It is not so important",
+    "answer2Total": "2",
+    "answer3": "It is essential",
+    "answer3Total": "3",
+    "answer4": "It's okay for me",
+    "answer4Total": "4"
+  },
+  {
+    "question": "What is your best quality?",
+    "answer1": "Creativity",
+    "answer1Total": "1",
+    "answer2": "Intelligence",
+    "answer2Total": "3",
+    "answer3": "Physical Strength",
+    "answer3Total": "2",
+    "answer4": "Goal-orinted",
+    "answer4Total": "4"
+  },
+  {
+    "question": "What do you consider to be your best personality traits?",
+    "answer1": "Harmonious, social, performative, great taste in music.",
+    "answer1Total": "1",
+    "answer2": "Energetic, enthusiastic, dedicated, always happy to lend a hand.",
+    "answer2Total": "2",
+    "answer3": "Creative, exspressive, colorful, life of the party!",
+    "answer3Total": "3",
+    "answer4": "Introspective, imaginative, good with words, thoughtful.",
+    "answer4Total": "4"
+  }
+]
+
+
+let currentQuestion = 0;
+let score = [];
+let selectedAnswersData = [];
+const totalQuestions =questions.length;
+
+const container = document.querySelector('.quiz-header');
+const questionEl = document.querySelector('.question');
+const option1 = document.querySelector('.option1');
+const option2 = document.querySelector('.option2');
+const option3 = document.querySelector('.option3');
+const option4 = document.querySelector('.option4');
+const nextButton = document.querySelector('.next');
+const restartButton = document.querySelector('.restart');
+const result = document.querySelector('.quiz-container');
+
+function generateQuestions (index) {
+    const question = questions[index];
+    const option1Total = questions[index].answer1Total;
+    const option2Total = questions[index].answer2Total;
+    const option3Total = questions[index].answer3Total;
+    const option4Total = questions[index].answer4Total;
+    questionEl.innerHTML = `${index + 1}. ${question.question}`
+    option1.setAttribute('data-total', `${option1Total}`);
+    option2.setAttribute('data-total', `${option2Total}`);
+    option3.setAttribute('data-total', `${option3Total}`);
+    option4.setAttribute('data-total', `${option4Total}`);
+    option1.innerHTML = `${question.answer1}`
+    option2.innerHTML = `${question.answer2}`
+    option3.innerHTML = `${question.answer3}`
+    option4.innerHTML = `${question.answer4}`
+}
+
+
+function loadNextQuestion () {
+    const selectedOption = document.querySelector('input[type="radio"]:checked');
+    if(!selectedOption) {
+        alert('Please select your answer!');
+        return;
+    }
+    const answerScore = Number(selectedOption.nextElementSibling.getAttribute('data-total'));
+
+    score.push(answerScore);
+
+    selectedAnswersData.push()
+    
+
+    const totalScore = score.reduce((total, currentNum) => total + currentNum);
+
+    currentQuestion++;
+
+        selectedOption.checked = false;
+    if(currentQuestion == totalQuestions - 1) {
+        nextButton.textContent = 'Finish';
+    }
+    if(currentQuestion == totalQuestions) {
+        container.style.display = 'none';
+         if(totalScore <= 7){
+             result.innerHTML = `  <div class="summary">
+            <h1>Your hobby could be Musical!</h1>
+            <p>Music makes you happy! And helps you feel comfortable with feeling sad.It lightens your feet when they’re feeling heavy, and gives you an outlet when you feel mad! So it’s no wonder that getting into a musical hobby will boost your mental health!It’s a versatile medium that can respond to any feelings you have – from the heavy impact of percussion, to the calm strum of a ukulele, or even the purposeful fidgeting at piano keys – creating sound and music can help you work through heavy emotions and balance any mood.</p></div>
+            <a href="/profile">To Profile</a>`
+         }else if(totalScore < 14 && totalScore > 7){
+            result.innerHTML = `  <div class="summary">
+            <h1>Your hobby could be Physical!</h1>
+            <p>Everyone has a body, and when you get yours moving, it boosts your mental and physical health, quiets your inner monologue, and releases happy inducing endorphins into your system!So why not turn your pursuit of exercise into a fun and rewarding hobby, like dance, sports, hiking, or a mindful movement practice like Yoga or Thai Chi.</p></div>
+            <a href="/profile">To Profile</a>`
+         }else if(totalScore < 21 && totalScore > 14){
+            result.innerHTML = `  <div class="summary">
+            <h1>Your hobby could be Artistic!</h1>
+            <p>It looks like you enjoy doing artistic stuff. You have the soul of an artist, and that's the driving force behind your will to get yourself a hobby. The good thing about this hobby is that you can continually monetize it. People would be glad to pay for your artwork, and it could eventually turn into a real side-hustle. But you don't have to overthink the financial aspects. An artist needs creative space and peace of mind to deliver their best. So, it's best to focus on what makes you happy instead of what can earn you more money. </p></div>
+            <a href="/profile">To Profile</a>`
+         }else if(totalScore < 28 && totalScore > 21){
+            result.innerHTML = `  <div class="summary">
+            <h1>Your hobby could be Writing!</h1>
+            <p>Words are how we communicate our thoughts, share our feelings, and overcome misunderstandings. Starting a writing or journaling practice is a great way to express yourself, and there’s no telling what might come out once you sit down and put pen to paper, or fingers to keyboard.Writing in a journal can be especially helpful when you’re trying to cope with anxiety and depression.</p></div>
+            <a href="/profile">To Profile</a>  `
+         }
+        return;
+    }
+    generateQuestions(currentQuestion);
+}
+
+
+
+
+generateQuestions(currentQuestion);
+nextButton.addEventListener('click', loadNextQuestion);
+result.addEventListener('click',restartQuiz);
+    </script>
+  </body>
+</html>

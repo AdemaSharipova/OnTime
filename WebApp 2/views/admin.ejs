@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin | On Time</title>
+    <script src="https://kit.fontawesome.com/22cf143bf2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel = "stylesheet" href = "/styles/admin.css">
+</head>
+<body>
+<% let i = 0 %>
+    <div id = "overlay" onclick = closePopUp("addPopUpForm")></div>
+    <h1 align="center">Admin cabinet</h1>
+    <a href = "/admin/challenges" class = "btn btn-lg btn-info usersButton">Challenges</a>
+        <h3 style = "display: inline; margin: 0px 10px 10px 10px">Users</h3>
+    <button class = "newUser" id = "button_new_user" onclick = showPopUp("addPopUpForm") >Add new User <i class="fa-solid fa-user-plus"></i></button>
+        <a class = "sort" rel= "tooltip" title = "sort by city" href = "/admin/users/sortByCity"><i class="fa-solid fa-city sort"></i></a>
+    <a class = "sort" rel = "tooltip" title = "sort by username" href = "/admin/users/sortByName"><i class="fa-solid fa-file-signature sort"></i></a>
+</div>
+    <table class = "users_table table table-responsive-sm table-bordered ">
+        <thead class = "table-dark" >
+            <tr>
+                <th width = "300px">User ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>City</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%users.forEach(details => { %>
+                <%let city = ((details.city == null) ? "city isn't entered" : details.city)%>
+            <tr>
+                <td><%= details._id %></td>
+                <td><%= details.username %></td>
+                <td><%= details.email %></td>
+                <td><%= details.password %></td>
+                <td><%= city %></td>
+                <td><a onclick = showPopUp("editPopUpForm<%=i%>")><i class="fa-solid fa-user-pen"></i></a></td>
+                <td><a href = '/admin/delete/<%= details.username%>'><i class="fa-solid fa-circle-minus"></i></a></td>
+            </tr>
+                <!--    User editing pop up-->
+                <div class = "popUpForm<%=i%> popUpForm" id = "editPopUpForm<%=i%>">
+                    <div class = "insidePopUp">
+                        <h3>Edit user</h3>
+                        <hr>
+                        <form method = "POST" action = "/admin/edit/<%= details.username%>">
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input value = "<%=details.username%>" name = "username" type="text"  class="form-control" >
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email address</label>
+                                <input value = "<%= details.email%>" name = "email" type="email" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input value = "<%= details.password%>" name = "password" type="password" class="form-control" >
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">City</label>
+                                <input value = "<%= details.city%>" name = "city" type="text" class="form-control">
+                                <p class = "optional">*optional</p>
+                            </div>
+                            <button type="submit" href = "/admin/edit/<%= details.username%>" class="submitButton">Edit</button>
+                        </form>
+                    </div>
+                </div>
+                <%i++%>
+            <% }) %>
+        </tbody>
+    </table>
+
+<!--    User adding pop up-->
+
+    <div class = "popUpForm" id = "addPopUpForm">
+        <div class = "insidePopUp">
+        <h3>New User</h3>
+        <hr>
+        <form method = "POST" action = "/admin/users/addUser">
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input placeholder="Name" type="text" name = "username" class="form-control" >
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email address</label>
+                <input name = "email" placeholder="E-mail" type="email" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input name = "password" placeholder="Password" type="password" class="form-control" >
+            </div>
+            <div class="mb-3">
+                <label class="form-label">City</label>
+                <input placeholder="City " type="text" name = "city" class="form-control">
+                <p class = "optional">*optional</p>
+            </div>
+            <button type="submit" class="submitButton">Create</button>
+        </form>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[rel='tooltip']").tooltip();
+        });
+
+        function showPopUp(formId){
+            document.getElementById(formId).style.display = "block"
+            document.getElementById("overlay").style.display = "block"
+        }
+
+        function closePopUp(formId){
+
+            document.getElementById(formId).style.display = "none"
+            document.getElementById("overlay").style.display = "none"
+            for (let n = 0; n < 10; n++) {
+                document.getElementById("editPopUpForm" + n).style.display = "none"
+            }
+        }
+    </script>
+</body>
+</html>

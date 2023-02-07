@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amethysta&family=Hind+Siliguri&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/22cf143bf2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel = "stylesheet" href = "/styles/challenge.css">
+
+</head>
+<body>
+
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#"> <img class="logo" src="images/logo.png" srcset="images/logo.svg" width="170px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="">Task Generator</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Pomodoro</a></li>
+                <li class="nav-item"><a class="nav-link" href="">ToDo list </a></li>
+                <li class="nav-item"><a class="nav-link" href="">Resources </a></li>
+                <li class="nav-item"><a class="nav-link" href="/profile">Profile </a></li>
+                <li class="nav-item">
+                    <form action="/api/auth/logout" method="post">
+                        <button class="nav-link logoutbtn" id="buttonnn" type="submit" style = "margin-right: 20px;">Logout</button>
+                    </form> </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+    <div class="row main">
+        <div class="col-lg-6 text-center mt-4 section1">
+            <p class = 'categoryTitle'>Choose a category</p>
+            <form method = "post" action= "/challenge">
+                <div class = "categoryButtonsSection">
+                <%categories.forEach(details => {%>
+                <button value = "<%=details.title%>" name = "button" class = "row btn categoryButton" style = "background-image: url('/uploads/<%=details.backgroundImage%>'); margin-bottom:20px">
+                    <%=details.title%>
+                </button>
+                <%})%>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-lg-6 section2">
+            <form action = "/challenge/selection/<%=title%>/<%=category%>" method = "post">
+                <div class="card">
+                    <div class="deleteSection">
+                        <img src="/images/deleteSection.png" alt="">
+                        <button class = "deleteButton"><i class="fa-regular fa-trash-can fa-3x"></i></button>
+                    </div>
+                    <div class="cardText text-center">
+                        <p>TITLE TITLE TITLE TITLE</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+<script type = "text/javascript">
+
+
+</script>
+</body>
+</html>

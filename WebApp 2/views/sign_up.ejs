@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Sign up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel='stylesheet' href='/styles/form.css'>
+</head>
+<body>
+
+
+
+
+
+
+    <div class="container" style = "overflow: visible">
+        <div class="forms-container">
+         <div class="signin-signup">
+            <form action="/api/auth/register" method = "post" class="sign-up-form">
+                <% if(typeof alert != 'undefined') { %>
+                    <% alert.forEach(function(error) { %>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <%= error.msg %>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    <% }) %>
+                <% } %>
+                <h2 class="title">Sign Up</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" name = "username" />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" name = "email" />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" name = "password"/>
+                </div>
+
+                <input type="submit" class="btn" value="Sign up" />
+                <p style = "margin: 0px">Have an account? <a style = "text-decoration: none; color: black;" href = '/login'>Sing in</a></p>
+                <p style = "margin: 5px" class="social-text" s>Or Sign up with social platforms</p>
+
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                    <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="/google" class="social-icon">
+                    <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </form>
+         </div>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>
